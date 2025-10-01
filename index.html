@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow Flowers Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            z-index: 10;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+        
+        .btn {
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #ffdb4d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .flower {
+            position: absolute;
+            top: -50px;
+            z-index: 1;
+            opacity: 0.8;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        
+        .flower .petal {
+            position: absolute;
+            background: radial-gradient(circle, #ffeb3b, #ffc107);
+            border-radius: 50% 50% 50% 0;
+            transform-origin: bottom center;
+        }
+        
+        .flower .center {
+            position: absolute;
+            background: radial-gradient(circle, #ff9800, #ff5722);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .counter {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .message {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 500px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Carla Sarmiento</h1>
+        <p>Toma tus flores ps, presiona los botones si quieres mas</p>
+        
+        <div>
+            <button class="btn" id="addFlowers">Agregar mas flores</button>
+            <button class="btn" id="changeBackground">Cambiar de color</button>
+        </div>
+        
+        <div class="counter">
+            Cantidad de flores: <span id="flowerCount">0</span>
+        </div>
+        
+        <div class="message" id="message">
+            Las flores amarillas unen amistades.
+        </div>
+    </div>
+
+    <script>
+        // Flower creation function
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            
+            // Random size between 20 and 50 pixels
+            const size = Math.random() * 30 + 20;
+            
+            // Create petals
+            for (let i = 0; i < 8; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                petal.style.transform = `rotate(${i * 45}deg)`;
+                flower.appendChild(petal);
+            }
+            
+            // Create center
+            const center = document.createElement('div');
+            center.className = 'center';
+            center.style.width = `${size * 0.4}px`;
+            center.style.height = `${size * 0.4}px`;
+            center.style.top = `${size * 0.3}px`;
+            center.style.left = `${size * 0.3}px`;
+            flower.appendChild(center);
+            
+            // Random position and animation duration
+            flower.style.left = `${Math.random() * 100}vw`;
+            flower.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            
+            // Random delay
+            flower.style.animationDelay = `${Math.random() * 5}s`;
+            
+            document.body.appendChild(flower);
+            
+            // Remove flower after animation completes
+            setTimeout(() => {
+                if (flower.parentNode) {
+                    flower.parentNode.removeChild(flower);
+                    updateFlowerCount();
+                }
+            }, parseFloat(flower.style.animationDuration) * 1000);
+            
+            updateFlowerCount();
+            return flower;
+        }
+        
+        // Update flower counter
+        function updateFlowerCount() {
+            const flowers = document.querySelectorAll('.flower');
+            document.getElementById('flowerCount').textContent = flowers.length;
+        }
+        
+        // Create initial flowers
+        for (let i = 0; i < 15; i++) {
+            createFlower();
+        }
+        
+        // Add more flowers on button click
+        document.getElementById('addFlowers').addEventListener('click', () => {
+            for (let i = 0; i < 10; i++) {
+                createFlower();
+            }
+            
+            // Show a temporary message
+            const message = document.getElementById('message');
+            message.textContent = "Más flores para ti, la mas hermosa";
+            setTimeout(() => {
+                message.textContent = "Hola causa";
+            }, 2000);
+        });
+        
+        // Change background color
+        document.getElementById('changeBackground').addEventListener('click', () => {
+            const colors = [
+                'linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d)',
+                'linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b)',
+                'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
+                'linear-gradient(135deg, #ff5e62, #ff9966)',
+                'linear-gradient(135deg, #5433ff, #20bdff, #a5fecb)'
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = randomColor;
+        });
+        
+        // Add some interactivity - flowers follow mouse on click and hold
+        let isMouseDown = false;
+        
+        document.addEventListener('mousedown', () => {
+            isMouseDown = true;
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isMouseDown) {
+                // Create a flower at mouse position
+                const flower = createFlower();
+                flower.style.left = `${e.clientX}px`;
+                flower.style.top = `${e.clientY}px`;
+                flower.style.animationDuration = '3s';
+            }
+        });
+    </script>
+</body>
+</html>
