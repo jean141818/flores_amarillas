@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yellow Flowers Animation</title>
+    <title>Flores Amarillas del Ferxxo 💚</title>
     <style>
         * {
             margin: 0;
@@ -13,10 +13,10 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #0a120c, #113a1a, #000000);
             color: white;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,74 +26,92 @@
         }
         
         .container {
+            background: rgba(10, 20, 15, 0.8);
+            border: 2px solid #39ff14; /* Verde neón Ferxxo */
+            border-radius: 20px;
             max-width: 800px;
             z-index: 10;
-            padding: 20px;
+            padding: 40px 20px;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.1);
+            animation: slideUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            backdrop-filter: blur(5px);
         }
         
         h1 {
             font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+            letter-spacing: 2px;
         }
         
         p {
             font-size: 1.4rem;
             margin-bottom: 30px;
             line-height: 1.6;
-            max-width: 600px;
+            color: #e0e0e0;
         }
         
         .btn {
-            background-color: #ffcc00;
-            color: #333;
-            border: none;
+            background-color: transparent;
+            color: #39ff14;
+            border: 2px solid #39ff14;
             padding: 12px 30px;
             font-size: 1.2rem;
+            font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             margin: 10px;
+            text-transform: uppercase;
         }
         
         .btn:hover {
-            background-color: #ffdb4d;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #39ff14;
+            color: #000;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
         }
         
+        /* Flores mejoradas */
         .flower {
             position: absolute;
             top: -50px;
             z-index: 1;
-            opacity: 0.8;
+            opacity: 0.9;
             animation-name: fall;
-            animation-timing-function: linear;
+            animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
             animation-iteration-count: infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 235, 59, 0.5));
         }
         
         .flower .petal {
             position: absolute;
-            background: radial-gradient(circle, #ffeb3b, #ffc107);
+            background: radial-gradient(circle, #ffee58, #fbc02d);
             border-radius: 50% 50% 50% 0;
             transform-origin: bottom center;
+            border: 1px solid rgba(255, 193, 7, 0.5);
         }
         
         .flower .center {
             position: absolute;
-            background: radial-gradient(circle, #ff9800, #ff5722);
+            background: radial-gradient(circle, #5d4037, #3e2723);
             border-radius: 50%;
             z-index: 2;
+            border: 2px solid #fbc02d;
         }
         
         @keyframes fall {
             0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.8;
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(110vh) rotate(360deg) scale(1.2);
                 opacity: 0;
             }
         }
@@ -101,61 +119,104 @@
         .counter {
             font-size: 1.5rem;
             margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 10px;
-            display: inline-block;
+            color: #39ff14;
+            font-weight: bold;
         }
         
         .message {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 1.2rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            max-width: 500px;
+            color: #ffffff;
+            font-style: italic;
+        }
+
+        /* Avatar del Ferxxo Animado */
+        .ferxxo-avatar {
+            position: fixed;
+            bottom: -150px;
+            right: 20px;
+            width: 120px;
+            z-index: 20;
+            animation: popUp 1s 1.5s forwards, bounce 2s 2.5s infinite alternate;
+            text-align: center;
+        }
+
+        .ferxxo-avatar .emoji {
+            font-size: 4rem;
+            filter: drop-shadow(0 0 10px #39ff14);
+        }
+
+        .ferxxo-avatar .bubble {
+            background: white;
+            color: black;
+            padding: 8px 12px;
+            border-radius: 15px 15px 0 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            opacity: 0;
+            animation: fadeIn 0.5s 2.5s forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes popUp {
+            to { bottom: 20px; }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            p {
-                font-size: 1.1rem;
-            }
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1.1rem; }
+            .ferxxo-avatar { right: 10px; width: 100px; }
+            .ferxxo-avatar .emoji { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Carla Sarmiento</h1>
-        <p>Toma tus flores ps, presiona los botones si quieres mas</p>
+        <p>Mor, el Ferxxo no te iba a dejar sin tus flores amarillas. ¡Mera belleza!</p>
         
         <div>
-            <button class="btn" id="addFlowers">Agregar mas flores</button>
-            <button class="btn" id="changeBackground">Cambiar de color</button>
+            <button class="btn" id="addFlowers">Más flores ps mor</button>
+            <button class="btn" id="changeBackground">Cambiar la vibra</button>
         </div>
         
         <div class="counter">
-            Cantidad de flores: <span id="flowerCount">0</span>
+            Flores en el cora: <span id="flowerCount">0</span> 💚
         </div>
         
         <div class="message" id="message">
-            Las flores amarillas unen amistades.
+            Las flores amarillas unen amistades, mor.
         </div>
     </div>
 
+    <!-- Animación del Ferxxo -->
+    <div class="ferxxo-avatar">
+        <div class="bubble">¡Feliz lunes, mor! Toma tus flores 🌻</div>
+        <div class="emoji">😎🧢</div>
+    </div>
+
     <script>
-        // Flower creation function
         function createFlower() {
             const flower = document.createElement('div');
             flower.className = 'flower';
             
-            // Random size between 20 and 50 pixels
-            const size = Math.random() * 30 + 20;
+            const size = Math.random() * 30 + 25; // Ligeramente más grandes
             
-            // Create petals
             for (let i = 0; i < 8; i++) {
                 const petal = document.createElement('div');
                 petal.className = 'petal';
@@ -165,25 +226,20 @@
                 flower.appendChild(petal);
             }
             
-            // Create center
             const center = document.createElement('div');
             center.className = 'center';
-            center.style.width = `${size * 0.4}px`;
-            center.style.height = `${size * 0.4}px`;
-            center.style.top = `${size * 0.3}px`;
-            center.style.left = `${size * 0.3}px`;
+            center.style.width = `${size * 0.45}px`;
+            center.style.height = `${size * 0.45}px`;
+            center.style.top = `${size * 0.28}px`;
+            center.style.left = `${size * 0.28}px`;
             flower.appendChild(center);
             
-            // Random position and animation duration
-            flower.style.left = `${Math.random() * 100}vw`;
-            flower.style.animationDuration = `${Math.random() * 10 + 5}s`;
-            
-            // Random delay
-            flower.style.animationDelay = `${Math.random() * 5}s`;
+            flower.style.left = `${Math.random() * 95}vw`;
+            flower.style.animationDuration = `${Math.random() * 6 + 4}s`; // Caen un poco más rápido
+            flower.style.animationDelay = `${Math.random() * 3}s`;
             
             document.body.appendChild(flower);
             
-            // Remove flower after animation completes
             setTimeout(() => {
                 if (flower.parentNode) {
                     flower.parentNode.removeChild(flower);
@@ -195,63 +251,58 @@
             return flower;
         }
         
-        // Update flower counter
         function updateFlowerCount() {
             const flowers = document.querySelectorAll('.flower');
             document.getElementById('flowerCount').textContent = flowers.length;
         }
         
-        // Create initial flowers
-        for (let i = 0; i < 15; i++) {
+        // Crear flores iniciales
+        for (let i = 0; i < 20; i++) {
             createFlower();
         }
         
-        // Add more flowers on button click
+        // Botón "Más flores"
         document.getElementById('addFlowers').addEventListener('click', () => {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 15; i++) {
                 createFlower();
             }
             
-            // Show a temporary message
             const message = document.getElementById('message');
-            message.textContent = "Más flores para ti, la mas hermosa";
+            message.style.color = '#39ff14';
+            message.textContent = "¡Qué chimba de flores para la más hermosa! 💚";
             setTimeout(() => {
-                message.textContent = "Hola causa";
-            }, 2000);
+                message.style.color = '#ffffff';
+                message.textContent = "Las flores amarillas unen amistades, mor.";
+            }, 3000);
         });
         
-        // Change background color
+        // Botón "Cambiar la vibra"
         document.getElementById('changeBackground').addEventListener('click', () => {
             const colors = [
-                'linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d)',
-                'linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b)',
-                'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
-                'linear-gradient(135deg, #ff5e62, #ff9966)',
-                'linear-gradient(135deg, #5433ff, #20bdff, #a5fecb)'
+                'linear-gradient(135deg, #000000, #39ff14, #000000)',
+                'linear-gradient(135deg, #111111, #0a5a22, #000000)',
+                'linear-gradient(135deg, #050505, #1db954, #191414)',
+                'linear-gradient(135deg, #000000, #2b2b2b, #39ff14)'
             ];
-            
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.style.background = randomColor;
         });
         
-        // Add some interactivity - flowers follow mouse on click and hold
+        // Interactividad con el mouse
         let isMouseDown = false;
         
-        document.addEventListener('mousedown', () => {
-            isMouseDown = true;
-        });
-        
-        document.addEventListener('mouseup', () => {
-            isMouseDown = false;
-        });
+        document.addEventListener('mousedown', () => isMouseDown = true);
+        document.addEventListener('mouseup', () => isMouseDown = false);
         
         document.addEventListener('mousemove', (e) => {
             if (isMouseDown) {
-                // Create a flower at mouse position
-                const flower = createFlower();
-                flower.style.left = `${e.clientX}px`;
-                flower.style.top = `${e.clientY}px`;
-                flower.style.animationDuration = '3s';
+                // Filtro para no crear demasiadas flores de golpe y saturar la pantalla
+                if (Math.random() > 0.7) {
+                    const flower = createFlower();
+                    flower.style.left = `${e.clientX - 20}px`;
+                    flower.style.top = `${e.clientY - 20}px`;
+                    flower.style.animationDuration = '2.5s';
+                }
             }
         });
     </script>
